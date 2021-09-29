@@ -1,0 +1,387 @@
+################################################################################
+##
+## Start 20706 Platform configurtion
+##
+################################################################################
+
+
+ENTRY "Init BB Register Bit Fields"
+{
+    "Num entries" = 48
+
+    # vvv $AUTOGEN(INCLUDE{../../../../patch/common/bb_regs.agi})
+    #
+    # ENTRY name:
+    # "Init BB Register Bit Fields"
+    #
+    # Example entry:
+    # All entries can have index set to [0].  The autogen script will populate indices
+    #
+    # # reg_name reg_address HWReset_value ROMReset_value FWReset_value
+    # "Register address[0]" = 0x3xxxxx      # BLTH01261644 (PLEASE INCLUDE CQ #)
+    #   "Bit field mask[0]" = 0xFFFFFFFF
+    #            "Value[0]" = 0xccc5
+
+# move to bb_regs_xxx.agi
+#    # ====================================
+#    # Modem register setting (16-bit)
+#    # ====================================
+#     "Register address[0]" = 0x31ff68       # BLTH02891320
+#       "Bit field mask[0]" = 0xFFFFFFFF
+#                "Value[0]" = 0x63
+
+###############BLTH03098008 [20703A1]RFFW:20703A1 AGC Table update 05/02/2014  APPLE UHE
+##########################################################################################
+#FWCQ: BLTH03068031 (HW CQ: BLTH03045638)
+
+      "Register address[0]" = 0x31ff34      # limitl_a limitu_a
+            "Bit field mask[0]" = 0xFFFF
+                    "Value[0]" = 0x6221
+
+      "Register address[1]" = 0x31fee4      # fixedGain_a
+             "Bit field mask[1]" = 0x3F
+                    "Value[1]" = 0x21
+
+# move to project specefic bb_regs_xxx.agi file
+#      "Register address[0]" = 0x600650      # lna2 idac
+#             "Bit field mask[0]" = 0xff
+#                    "Value[0]" = 0xc0
+#
+#      "Register address[0]" = 0x31f970      # use dedicated le table
+#             "Bit field mask[0]" = 0xffff
+#                    "Value[0]" = 0x176a
+##########################################################################################
+
+##########################################################################################
+#FWCQ: BLTH03044294 (BLTH03043974)
+#     "Register address[0]" = 0x31ff34      # limitl_a limitu_a
+#	    "Bit field mask[0]" = 0xFFFF
+#                     "Value[0]" = 0x6B21
+#
+#     "Register address[0]" = 0x31fee4      # fixedGain_a
+#            "Bit field mask[0]" = 0x3F
+#                     "Value[0]" = 0x24
+
+##############################################################################################
+
+#FW CQ:BLTH03044595 (BLTH03043980)
+
+     "Register address[2]" = 0x6006b0      # mixer gate bias
+           "Bit field mask[2]" = 0x70
+                     "Value[2]" = 0x50
+
+
+
+
+    # ====================================
+    # RF control register setting (8-bit)
+    # ====================================
+
+    # ====================================
+    # RF register setting (8-bit)
+    # ====================================
+
+    #3. Update Xtal buffer strength
+    #HWCQ BLTH02940595
+    #0x600780  =
+    "Register address[3]" = 0x600780
+    "Bit field mask[3]" = 0xFFFFFFFF
+    "Value[3]" = 0x1
+
+    # ====================================
+    # clb register setting (8-bit)
+    # ====================================
+     "Register address[4]" = 0x64008c      # BLTH02741539
+       "Bit field mask[4]" = 0xFFFFFFFF
+                "Value[4]" = 0x01
+
+
+    #Update the settings for 20703A1 for all branches, please refer to the attached
+    #cgs branch table.
+    #1. Enable 2P5LDO
+    #HWCQ BLTH02940595
+    #0x640684  =
+    "Register address[5]" = 0x640684
+    "Bit field mask[5]" = 0xFFFFFFFF
+    "Value[5]" = 0x30
+
+
+    #HWCQ BLTH02940595
+    #0x64068c  =
+    "Register address[6]" = 0x64068c
+    "Bit field mask[6]" = 0xFFFFFFFF
+    "Value[6]" = 0x1
+
+#HW CQ BLTH03456198
+    #2. Increase VDD to 1.23V
+    #HWCQ BLTH02940595
+    #0x64065c  =
+    "Register address[7]" = 0x64065c
+    "Bit field mask[7]" = 0xFFFFFFFF
+    "Value[7]" = 0x0
+
+    # global variable pauseCpuClockDivisor  HW BLTH02893129
+    "Register address[8]" = 0x00201ad8 # <<< $AUTOGEN(ADDR{pauseCpuClockDivisor})
+      "Bit field mask[8]" = 0xFFFFFFFF
+               "Value[8]" = 0x6
+    # corresponding register write to cr_clk_div_sel_adr HW BLTH02893129
+    "Register address[9]" = 0x320000
+      "Bit field mask[9]" = 0xF0
+               "Value[9]" = 0x60
+
+    #HW CQ BLTH03009657
+    "Register address[10]" = 0x31f8c4
+    "Bit field mask[10]" = 0xFFFF
+    "Value[10]" = 0x4919
+
+    #HW CQ BLTH03009657
+    "Register address[11]" = 0x31f8ec
+    "Bit field mask[11]" = 0xFFFF
+    "Value[11]" = 0xc90d
+
+    #HW CQ BLTH03009657
+    "Register address[12]" = 0x31fccc
+    "Bit field mask[12]" = 0xFFFF
+    "Value[12]" = 0x451b
+
+    #HW CQ BLTH03009657
+    "Register address[13]" = 0x31fcd0
+    "Bit field mask[13]" = 0xFFFF
+    "Value[13]" = 0xc911
+
+    #HW CQ BLTH03009657
+    "Register address[14]" = 0x31fcdc
+    "Bit field mask[14]" = 0xFFFF
+    "Value[14]" = 0xc811
+
+    #HW CQ BLTH03009657
+    "Register address[15]" = 0x31fce0
+    "Bit field mask[15]" = 0xFFFF
+    "Value[15]" = 0x471a
+
+    #HW CQ BLTH03009657
+    "Register address[16]" = 0x31fce4
+    "Bit field mask[16]" = 0xFFFF
+    "Value[16]" = 0xc80c
+
+    #HW CQ BLTH03009657
+    "Register address[17]" = 0x31fdf8
+    "Bit field mask[17]" = 0xFFFF
+    "Value[17]" = 0x4a1b
+
+    #HW CQ BLTH03043741
+    "Register address[18]" = 0x31fc88
+    "Bit field mask[18]" = 0xFFFF
+    "Value[18]" = 0x400
+
+    #HWCQ BLTH03043743
+    # move to bb_regs_xxx.agi
+#    "Register address[0]" = 0x64005c
+#    "Bit field mask[0]" = 0xFFFF
+#    "Value[0]" = 0x2
+
+    #HW CQ BLTH03043747
+    "Register address[19]" = 0x600004
+    "Bit field mask[19]" = 0xFFFF
+    "Value[19]" = 0x1
+
+    #HW CQ BLTH03043747
+    "Register address[20]" = 0x600008
+    "Bit field mask[20]" = 0xFFFF
+    "Value[20]" = 0x5
+
+    #magEquLow0 (0x31fe60) =  0x333
+    #HW CQ BLTH03044536
+    "Register address[21]" = 0x31fe60
+    "Bit field mask[21]" = 0xFFFF
+    "Value[21]" = 0x333
+
+    #HW CQ BLTH03044536
+    #magEquLow1 (0x31fe64) =  0x3A29
+    "Register address[22]" = 0x31fe64
+    "Bit field mask[22]" = 0xFFFF
+    "Value[22]" = 0x3A29
+
+    #HW CQ BLTH03044536
+    #magEquLow2 (0x31fe68) =  0x568
+    "Register address[23]" = 0x31fe68
+    "Bit field mask[23]" = 0xFFFF
+    "Value[23]" = 0x568
+
+    #HW CQ BLTH03044536
+    #magEquLow3 (0x31fe6c) =  0x30A8
+    "Register address[24]" = 0x31fe6c
+    "Bit field mask[24]" = 0xFFFF
+    "Value[24]" = 0x30A8
+
+    #HW CQ BLTH03044536
+    #magEquLow4 (0x31fe70) =  0x3EE8
+    "Register address[25]" = 0x31fe70
+    "Bit field mask[25]" = 0xFFFF
+    "Value[25]" = 0x3EE8
+
+    #HW CQ BLTH03044536
+    #magEquLow5 (0x31fe74) =  0x321C
+    "Register address[26]" = 0x31fe74
+    "Bit field mask[26]" = 0xFFFF
+    "Value[26]" = 0x321C
+
+    #HW CQ BLTH03044536
+    #magEquLow6 (0x31fe78) =  0x33BB
+    "Register address[27]" = 0x31fe78
+    "Bit field mask[27]" = 0xFFFF
+    "Value[27]" = 0x33BB
+
+    #HW CQ BLTH03044536
+    #magEquLow7 (0x31fe7c) =  0x930
+    "Register address[28]" = 0x31fe7c
+    "Bit field mask[28]" = 0xFFFF
+    "Value[28]" = 0x930
+
+
+##############################################################################
+#FW CQ:BLTH03044582 (HW CQ:BLTH03043977)
+#Fast agc settings update to reduce continuity bumps for BT/BLE:
+
+# agc init timing to 0
+    "Register address[29]" = 0x31fee0
+          "Bit field mask[29]" = 0xFFFF
+                "Value[29]" = 0x2071
+
+ # enabled fastAgc BT
+    "Register address[30]" = 0x31fb84      # fastagc ctrl0
+       "Bit field mask[30]" = 0xffff
+                "Value[30]" = 0xc647
+
+# increase fast agc meas time by 0.33us
+    "Register address[31]" = 0x31fb88      # fastagc ctrl1
+       "Bit field mask[31]" = 0xFFFF
+                "Value[31]" = 0x4f77
+
+#########################################################################
+
+    #HW CQ BLTH03043743
+    #0x640084[5:4] = 0x3
+    "Register address[32]" = 0x640084
+       "Bit field mask[32]" = 0x30
+                "Value[32]" = 0x30
+
+
+    #HW CQ BLTH03043743
+    #0x64008c[0] = 0x1
+    "Register address[33]" = 0x64008c
+       "Bit field mask[33]" = 0x1
+                "Value[33]" = 0x1
+
+    #BLTH03438264 spurEstTimer fwrst update
+    "Register address[34]" = 0x31f8b8
+          "Bit field mask[34]" = 0xf800
+          "Value[34]" = 0xa000
+
+
+    # ^^^ $AUTOGEN(INCLUDE{../../../../patch/common/bb_regs.agi})
+    # vvv $AUTOGEN(INCLUDE{../../../../patch/common/bb_regs_Generic.agi})
+
+###############################################################################
+##
+## BB registers settings apply to tier2\Generic projects only
+###############################################################################
+
+
+
+
+
+    # ====================================
+    # Modem register setting (16-bit)
+    # ====================================
+    "Register address[35]" = 0x31ff68       # BLTH02891320
+    "Bit field mask[35]" = 0xFFFFFFFF
+    "Value[35]" = 0x63
+
+
+    #HW CQ BLTH03043754
+    #HW CQ BLTH03043750
+    "Register address[36]" = 0x600380
+    "Bit field mask[36]" = 0xFFFF
+    "Value[36]" = 0xa7
+
+    #HW CQ BLTH03043750
+    #HW CQ BLTH03043754
+    "Register address[37]" = 0x600384
+    "Bit field mask[37]" = 0xFFFF
+    "Value[37]" = 0xf7
+
+
+    #HW CQ BLTH03043750
+    #HW CQ BLTH03043754
+    "Register address[38]" = 0x60056c
+    "Bit field mask[38]" = 0xFFFF
+    "Value[38]" = 0x29
+
+    #HW CQ BLTH03043750
+    #HW CQ BLTH03043754
+    "Register address[39]" = 0x6006f4
+    "Bit field mask[39]" = 0xFFFF
+    "Value[39]" = 0xe
+
+    #HW CQ BLTH03043750
+    #HW CQ BLTH03043754
+    "Register address[40]" = 0x600580
+    "Bit field mask[40]" = 0xFFFF
+    "Value[40]" = 0x0
+
+    #HW CQ BLTH03043750
+    #HW CQ BLTH03043754
+    #"Register address[0]" = 0x31fc94
+    #"Bit field mask[0]" = 0xFFFF
+    #"Value[0]" = 0x26c
+
+###############BLTH03098008 [20703A1]RFFW:20703A1 AGC Table update 05/02/2014  APPLE UHE
+##########################################################################################
+#FWCQ: BLTH03068031 (HW CQ: BLTH03045638)
+#
+      "Register address[41]" = 0x600650      # lna2 idac
+      "Bit field mask[41]" = 0xff
+      "Value[41]" = 0xc0
+	 "Register address[42]" = 0x31f970      # use dedicated le table
+     "Bit field mask[42]" = 0xffff
+     "Value[42]" = 0x176a
+
+
+##########################################################################################
+
+    #HWCQ BLTH03043743
+    "Register address[43]" = 0x64005c
+    "Bit field mask[43]" = 0xFFFF
+    "Value[43]" = 0x2
+
+    #HWCQ BLTH03433346 dig gain val blocker case
+    "Register address[44]" = 0x31fe3c
+    "Bit field mask[44]" = 0x00FC
+    "Value[44]" = 0xe8
+
+    #HWCQ BLTH03433346 targetAdcRssi blocker case
+    "Register address[45]" = 0x31ffe4
+    "Bit field mask[45]" = 0x7F7F
+    "Value[45]" = 0x6d6d
+    #HWCQ BLTH03433346 limitu_a_blk blocker case
+    "Register address[46]" = 0x31fdf0
+    "Bit field mask[46]" = 0x7F00
+    "Value[46]" = 0x2100
+
+    #BLTH03508392 BLE tx does not work. paRampCtrl_adr/rxCtrl0_adr values set incorrectly
+    "Register address[47]" = 0x31fcd8
+    "Bit field mask[47]" = 0xFFFF
+    "Value[47]" = 0x8528
+
+
+
+
+    # ^^^ $AUTOGEN(INCLUDE{../../../../patch/common/bb_regs_Generic.agi})
+}
+
+################################################################################
+##
+## End 20706 Platform configurtion
+##
+################################################################################
