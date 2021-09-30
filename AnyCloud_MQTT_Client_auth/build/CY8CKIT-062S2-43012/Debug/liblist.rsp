@@ -1,0 +1,2 @@
+../mtb_shared/btstack/release-v3.0.0/stack/COMPONENT_WICED_BLE/COMPONENT_CM4/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/libbtstack.a
+../mtb_shared/capsense/release-v2.10.0/COMPONENT_SOFTFP/TOOLCHAIN_GCC_ARM/libcy_capsense.a
